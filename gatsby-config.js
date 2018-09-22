@@ -1,11 +1,11 @@
 module.exports = {
   siteMetadata: {
-    title: 'Gatsby Default Starter',
+    title: 'Antoni Matras',
   },
   plugins: [
-    'gatsby-plugin-react-helmet', 
+    'gatsby-plugin-react-helmet',
     'gatsby-plugin-typescript',
-      {
+    {
       resolve: `gatsby-plugin-typography`,
       options: {
         pathToConfigModule: `src/utils/typography.ts`,
@@ -29,4 +29,4 @@ module.exports = {
     },
     'gatsby-plugin-offline',
   ],
-}
+};

@@ -1,4 +1,4 @@
-const { defaults } = require('jest-config')
+const { defaults } = require('jest-config');
 
 module.exports = {
   preset: 'ts-jest',
@@ -13,4 +13,4 @@ module.exports = {
       tsConfigFile: 'tsconfig.spec.json',
     },
   },
-}
+};
