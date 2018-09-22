@@ -1,4 +1,4 @@
-import React from 'react'
+import * as React from 'react'
 import { Link } from 'gatsby'
 
 import Layout from '../components/layout'
@@ -12,3 +12,4 @@ const SecondPage = () => (
 )
 
 export default SecondPage
+
