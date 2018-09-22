@@ -1,33 +1,38 @@
-import * as React from 'react'
-import { Link } from 'gatsby'
+import * as React from 'react';
+import styled from 'react-emotion';
 
-const Header = ({ siteTitle }) => (
-  <div
-    style={{
-      background: 'rebeccapurple',
-      marginBottom: '1.45rem',
-    }}
-  >
-    <div
-      style={{
-        margin: '0 auto',
-        maxWidth: 960,
-        padding: '1.45rem 1.0875rem',
-      }}
-    >
-      <h1 style={{ margin: 0 }}>
-        <Link
-          to="/"
-          style={{
-            color: 'white',
-            textDecoration: 'none',
-          }}
-        >
-          {siteTitle}
-        </Link>
-      </h1>
-    </div>
-  </div>
-)
+const ContainerOuter = styled('div')({
+  position: 'fixed',
+  top: 0,
+  left: 0,
+  right: 0,
+  color: 'white',
+  backgroundColor: 'var(--primary)',
+  height: 'var(--header-height)',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'center',
+  alignItems: 'flex-start',
+});
 
-export default Header
+const ContainerInner = styled('div')({ maxWidth: 960, padding: '0 1em' });
+
+const Title = styled('h1')({
+  padding: 0,
+  margin: 0,
+  textTransform: 'uppercase',
+  fontSize: '1rem',
+  '@media (min-width: 480px)': {
+    fontSize: '1.5rem',
+  },
+});
+
+const Header: React.StatelessComponent = () => (
+  <ContainerOuter>
+    <ContainerInner>
+      <Title>Antoni Matras</Title>
+    </ContainerInner>
+  </ContainerOuter>
+);
+
+export default Header;
