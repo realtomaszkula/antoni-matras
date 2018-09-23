@@ -1,20 +1,28 @@
 import { css } from 'emotion';
 import * as React from 'react';
-import Antek from '../images/antoni.jpg';
-import { PrimaryDarkContainer } from './container';
 
-const BannerImage: React.StatelessComponent = () => (
-  <PrimaryDarkContainer>
+const BannerImage: React.StatelessComponent<{
+  src: string;
+  alt: string;
+  srcSet?: string;
+  sizes?: string;
+}> = ({ src, alt, srcSet, sizes }) => (
     <img
-      src={Antek}
+      alt={alt}
+      src={src}
+      srcSet={srcSet}
+      sizes={sizes}
       className={css({
         display: 'block',
         margin: '0 auto',
         objectFit: 'cover',
-        objectPosition: '0 0',
+        width: '100%',
+        height: 400,
+        '@media (min-width: 960px)': {
+          height: 600,
+        },
       })}
     />
-  </PrimaryDarkContainer>
 );
 
 export default BannerImage;

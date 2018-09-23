@@ -91,6 +91,9 @@ export const Tile: React.StatelessComponent<Themable> = ({
       padding: '3rem 1rem',
       backgroundColor,
       color,
+      '@media (min-width: 960px)': {
+        padding: '5rem 1rem',
+      },
     })}
   >
     {children}

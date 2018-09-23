@@ -168,16 +168,18 @@ class Header extends React.Component<any, { isOpen: boolean }> {
     ];
 
     return (
-      <ContainerOuter>
-        <ContainerInner>
-          <Title>
-            <Link to="/">Antoni Matras</Link>
-          </Title>
-          <Hamburger isOpen={this.state.isOpen} isOpenChange={this.toggle} />
-          <MobileNav links={links} isOpen={this.state.isOpen} />
-          <DesktopNav links={links} />
-        </ContainerInner>
-      </ContainerOuter>
+      <div className={css({ zIndex: 1000, position: 'relative' })}>
+        <ContainerOuter>
+          <ContainerInner>
+            <Title>
+              <Link to="/">Antoni Matras</Link>
+            </Title>
+            <Hamburger isOpen={this.state.isOpen} isOpenChange={this.toggle} />
+            <MobileNav links={links} isOpen={this.state.isOpen} />
+            <DesktopNav links={links} />
+          </ContainerInner>
+        </ContainerOuter>
+      </div>
     );
   }
 }
