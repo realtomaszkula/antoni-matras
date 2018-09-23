@@ -1,10 +1,11 @@
-import { injectGlobal } from 'emotion';
+import { injectGlobal, css } from 'emotion';
 import { graphql, StaticQuery } from 'gatsby';
 import * as React from 'react';
 import styled from 'react-emotion';
 import Helmet from 'react-helmet';
 import Footer from './footer';
 import Header from './header';
+import './layout.css';
 
 injectGlobal`
   :root {
@@ -18,14 +19,6 @@ injectGlobal`
     --header-height: 54px;
   }
 `;
-
-const Content = styled('div')({
-  margin: '0 auto',
-  display: 'flex',
-  flexDirection: 'column',
-  paddingTop: 'var(--header-height)',
-  minHeight: 'calc(100vh - var(--header-height))',
-});
 
 const Layout: React.StatelessComponent = ({ children }) => (
   <StaticQuery
@@ -50,8 +43,24 @@ const Layout: React.StatelessComponent = ({ children }) => (
           <html lang="en" />
         </Helmet>
         <Header />
-        <Content>{children}</Content>
-        <Footer />
+        <main
+          className={css({
+            margin: '0 auto',
+            display: 'flex',
+            flexDirection: 'column',
+            paddingTop: 'var(--header-height)',
+            minHeight: '100vh',
+          })}
+        >
+          <div
+            className={css({
+              flex: 1,
+            })}
+          >
+            {children}
+          </div>
+          <Footer />
+        </main>
       </>
     )}
   />
