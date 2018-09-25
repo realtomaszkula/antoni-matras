@@ -17,9 +17,9 @@ const BannerImage: React.StatelessComponent<{
         margin: '0 auto',
         objectFit: 'cover',
         width: '100%',
-        height: 400,
+        height: 300,
         '@media (min-width: 960px)': {
-          height: 600,
+          height: 400,
         },
       })}
     />

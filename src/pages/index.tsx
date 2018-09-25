@@ -1,12 +1,72 @@
-import * as React from 'react';
-import AboutMe from '../components/about-me';
-import Layout from '../components/layout';
-import News from '../components/news';
-import Tweets from '../components/tweets';
-import Vision from '../components/vision';
-import Antek from '../images/antoni.jpg';
 import { css } from 'emotion';
-import { PrimaryDarkContainer } from '../components/container';
+import * as React from 'react';
+import Container, {
+  AccentContainer,
+  PrimaryContainer,
+  PrimaryDarkContainer,
+} from '../components/container';
+import Layout from '../components/layout';
+import Tile, {
+  TileAccent,
+  TileAccentTitle,
+  TileBody,
+  TileCategory,
+  TilePrimary,
+  TilePrimaryTitle,
+} from '../components/tile';
+import Antek from '../images/antoni.jpg';
+
+const News: React.StatelessComponent = () => (
+  <Container>
+    <Tile>
+      <TileCategory>Aktualnosci</TileCategory>
+      <TilePrimaryTitle>
+        Możliwe jest dużo więcej, niż przyzwyczajono nas myśleć
+      </TilePrimaryTitle>
+      <TileBody>
+        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
+        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
+        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
+        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
+        pariatur laboris anim amet est magna nostrud do.
+      </TileBody>
+    </Tile>
+  </Container>
+);
+
+const Vision: React.StatelessComponent = () => (
+  <AccentContainer>
+    <TileAccent>
+      <TileCategory>Program</TileCategory>
+      <TilePrimaryTitle>Chcialbym zeby Krakow byl miastem</TilePrimaryTitle>
+      <TileBody>
+        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
+        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
+        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
+        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
+        pariatur laboris anim amet est magna nostrud do.
+      </TileBody>
+    </TileAccent>
+  </AccentContainer>
+);
+
+const AboutMe: React.StatelessComponent = () => (
+  <PrimaryContainer>
+    <TilePrimary>
+      <TileCategory>O mnie</TileCategory>
+      <TileAccentTitle>
+        Kraków to dla mnie bardzo osobista sprawa.{' '}
+      </TileAccentTitle>
+      <TileBody>
+        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
+        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
+        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
+        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
+        pariatur laboris anim amet est magna nostrud do.
+      </TileBody>
+    </TilePrimary>
+  </PrimaryContainer>
+);
 
 const MainImage: React.StatelessComponent<{
   src: string;
@@ -24,6 +84,7 @@ const MainImage: React.StatelessComponent<{
       margin: '0 auto',
       maxWidth: '100%',
       height: 'auto',
+      maxHeight: 600,
     })}
   />
 );
@@ -36,7 +97,6 @@ const IndexPage = () => (
     <AboutMe />
     <News />
     <Vision />
-    <Tweets />
   </Layout>
 );
 

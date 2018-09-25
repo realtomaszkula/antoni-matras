@@ -37,7 +37,7 @@ export const TileTitle: React.StatelessComponent<Themable> = ({
     className={css({
       backgroundColor,
       color,
-      padding: '0.5em',
+      padding: '1.2rem',
     })}
   >
     {children}
@@ -54,6 +54,38 @@ export const TileAccentTitle: React.StatelessComponent = ({ children }) => (
 
 export const TilePrimaryTitle: React.StatelessComponent = ({ children }) => (
   <TileTitle
+    backgroundColor={'var(--primary)'}
+    color={'white'}
+    children={children}
+  />
+);
+export const TileSubtitle: React.StatelessComponent<Themable> = ({
+  children,
+  backgroundColor,
+  color,
+}) => (
+  <p
+    className={css({
+      backgroundColor,
+      color: color || 'rgba(0, 0, 0, 0.8)',
+      fontSize: '1.2rem',
+      padding: '0.5rem',
+    })}
+  >
+    {children}
+  </p>
+);
+
+export const TileAccentSubtitle: React.StatelessComponent = ({ children }) => (
+  <TileSubtitle
+    backgroundColor={'var(--accent)'}
+    color={'white'}
+    children={children}
+  />
+);
+
+export const TilePrimarySubtitle: React.StatelessComponent = ({ children }) => (
+  <TileSubtitle
     backgroundColor={'var(--primary)'}
     color={'white'}
     children={children}

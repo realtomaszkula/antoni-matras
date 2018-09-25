@@ -24,7 +24,7 @@ const ContainerInner = styled('div')({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'flex-start',
-  padding: '0 1em',
+  padding: '0 1rem',
 });
 
 const Title = styled('h1')({
@@ -135,7 +135,7 @@ const MobileNav: React.StatelessComponent<{
               display: 'block',
               textAlign: 'center',
               textTransform: 'uppercase',
-              padding: '1em',
+              padding: '1rem',
             })}
             activeClassName={css({
               backgroundColor: 'var(--accent)',
@@ -162,6 +162,7 @@ class Header extends React.Component<any, { isOpen: boolean }> {
 
   render() {
     const links: NavLink[] = [
+      { to: '/', label: 'Strona Główna' },
       { to: 'o-mnie', label: 'O mnie' },
       { to: 'program', label: 'Program' },
       { to: 'kontakt', label: 'Kontakt' },

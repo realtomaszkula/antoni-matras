@@ -11,10 +11,13 @@ import Tile, {
   TilePrimary,
   TilePrimaryTitle,
   TileTitle,
+  TileCategory,
+  TileBody,
 } from '../components/tile';
 import MugShot from '../images/mug-shot.png';
 import planty from '../images/planty.jpg';
 import BannerImage from '../components/banner-image';
+
 
 const Portrait = () => (
   <Container>
@@ -48,7 +51,6 @@ class AboutMe extends React.Component {
     return (
       <Layout>
         <BannerImage src={planty} alt="Planty w Krakowie" />
-        <Portrait />
         <Container>
           <Tile>
             <TileTitle>O mnie</TileTitle>

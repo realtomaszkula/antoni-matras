@@ -25,6 +25,9 @@ const GridTileContent: React.StatelessComponent = ({ children }) => (
   <div
     className={css({
       flex: 1,
+      display: 'flex',
+      justifyContent: 'center',
+      alignItems: 'center',
     })}
   >
     {children}
@@ -37,7 +40,7 @@ const GridTile: React.StatelessComponent = ({ children }) => (
       borderTop: '5px solid var(--accent)',
       backgroundColor: 'white',
       color: 'black',
-      padding: '1em',
+      padding: '1rem',
       display: 'flex',
     })}
   >
@@ -48,7 +51,6 @@ const GridTile: React.StatelessComponent = ({ children }) => (
 const Grid: React.StatelessComponent = ({ children }) => (
   <div
     className={css({
-      padding: '1em',
       display: 'grid',
       gridTemplateColumns: 'repeat(auto-fill, minmax(276px, 1fr))',
       gridGap: 32,
