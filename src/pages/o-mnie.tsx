@@ -1,5 +1,6 @@
 import { css } from 'emotion';
 import * as React from 'react';
+import BannerImage from '../components/banner-image';
 import Container, {
   AccentContainer,
   PrimaryContainer,
@@ -11,85 +12,78 @@ import Tile, {
   TilePrimary,
   TilePrimaryTitle,
   TileTitle,
-  TileCategory,
-  TileBody,
 } from '../components/tile';
-import MugShot from '../images/mug-shot.png';
-import planty from '../images/planty.jpg';
-import BannerImage from '../components/banner-image';
+import Antek from '../images/antek-mami.jpg';
 
+const Banner: React.StatelessComponent = () => {
+  return (
+    <Container>
+      <div
+        className={css`
+          padding-top: 4rem;
+          display: flex;
+        `}
+      >
+        <img
+          src={Antek}
+          className={css`
+            display: block;
+            height: 400px;
+            width: auto;
+          `}
+        />
+        <div
+          className={css`
+            color: white;
+            padding: 1rem 5rem;
+          `}
+        >
+          <h1>Antoni Matras</h1>
+          <h3>
+            Absolwent wydziału prawa i administracji Uniwersytetu
+            Jagiellońskiego.
+          </h3>
+        </div>
+      </div>
+    </Container>
+  );
+};
 
-const Portrait = () => (
-  <Container>
-    <div
-      className={css({
-        position: 'relative',
-      })}
-    >
-      <img
-        className={css({
-          backgroundColor: 'white',
-          border: '3px solid grey',
-          borderRadius: '50%',
-          position: 'absolute',
-          right: '20%',
-          top: '-90px',
-          width: 180,
-          height: 180,
-          display: 'flex',
-          justifyContent: 'center',
-          alignItems: 'center',
-        })}
-        src={MugShot}
-      />
-    </div>
-  </Container>
-);
+const Bullet: React.StatelessComponent = () => {
+  return <div>Bullet</div>;
+};
+
+const Bullets: React.StatelessComponent = () => {
+  return <div>Bullets</div>;
+};
 
 class AboutMe extends React.Component {
   render() {
+    const bullets = [
+      'Wieloletnie doświadczenie zawodowe zarówno korporacyjne oraz w organie administracji państwowej pozwala mi na skuteczną pomoc  drugiemu człowiekowi.',
+      'Jestem zaangażowany również  w działalność społeczno - wolontaryjną .',
+      'W swojej działalności kieruje się zawsze zasadami etyki zawodowej dbając o zachowanie wysokich standardów w każdym aspekcie wykonywania zadań.',
+      'Poprzez dotychczasowe zaangażowanie zawodowo-społeczne jestem otwarty na potrzeby każdego mieszkańca Krakowa',
+    ];
+
     return (
       <Layout>
-        <BannerImage src={planty} alt="Planty w Krakowie" />
-        <Container>
-          <Tile>
-            <TileTitle>O mnie</TileTitle>
-            Ex incididunt nisi aute ad aliquip excepteur ea reprehenderit
-            nostrud ullamco ex minim. Minim culpa id magna labore nulla sunt
-            nostrud duis voluptate veniam. Eu ipsum esse commodo anim nisi in.
-            Fugiat aute et aute elit enim consequat adipisicing excepteur
-            exercitation. Fugiat voluptate ullamco labore ullamco incididunt id
-            commodo ad cillum do commodo cillum culpa. Duis amet sunt et est
-            laborum ut sunt consectetur eu reprehenderit voluptate. Incididunt
-            et id aliquip minim labore eiusmod qui dolore.
-          </Tile>
-        </Container>
-        <AccentContainer>
-          <TileAccent>
-            <TilePrimaryTitle>Edukacja</TilePrimaryTitle>
-            Ex incididunt nisi aute ad aliquip excepteur ea reprehenderit
-            nostrud ullamco ex minim. Minim culpa id magna labore nulla sunt
-            nostrud duis voluptate veniam. Eu ipsum esse commodo anim nisi in.
-            Fugiat aute et aute elit enim consequat adipisicing excepteur
-            exercitation. Fugiat voluptate ullamco labore ullamco incididunt id
-            commodo ad cillum do commodo cillum culpa. Duis amet sunt et est
-            laborum ut sunt consectetur eu reprehenderit voluptate. Incididunt
-            et id aliquip minim labore eiusmod qui dolore.
-          </TileAccent>
-        </AccentContainer>
-        <PrimaryContainer>
-          <TilePrimary>
-            <TileAccentTitle>Doswiadczenie Zawodowe</TileAccentTitle>
-            Ex incididunt nisi aute ad aliquip excepteur ea reprehenderit
-            nostrud ullamco ex minim. Minim culpa id magna labore nulla sunt
-            nostrud duis voluptate veniam. Eu ipsum esse commodo anim nisi in.
-            Fugiat aute et aute elit enim consequat adipisicing excepteur
-            exercitation. Fugiat voluptate ullamco labore ullamco incididunt id
-            commodo ad cillum do commodo cillum culpa. Duis amet sunt et est
-            laborum ut sunt consectetur eu reprehenderit voluptate. Incididunt
-            et id aliquip minim labore eiusmod qui dolore.
-          </TilePrimary>
-        </PrimaryContainer>
+        <div
+          className={css`
+            background: linear-gradient(
+              var(--primary-dark) 25%,
+              var(--white) 25%
+            );
+            min-height: 100vh;
+          `}
+        >
+          <Banner />
+          <Bullets>
+            {bullets.map((bullet, i) => (
+              <Bullet key={i}/>
+            ))}
+          </Bullets>
+        </div>
       </Layout>
     );
   }

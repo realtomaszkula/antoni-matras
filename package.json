@@ -6,6 +6,7 @@
   "dependencies": {
     "emotion": "^9.2.10",
     "emotion-server": "^9.2.10",
+    "emotion-theming": "^9.2.9",
     "gatsby": "^2.0.0",
     "gatsby-plugin-emotion": "^2.0.5",
     "gatsby-plugin-manifest": "^2.0.2",

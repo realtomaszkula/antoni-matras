@@ -1,19 +1,22 @@
-import { css } from 'emotion';
 import * as React from 'react';
-import Container, { PrimaryContainer } from './container';
+import styled, { StyledComponent } from 'react-emotion';
+import { Theme } from '../utils/theme';
+import { BlockPrimary } from './block';
+import Container from './container';
 
-const Copyright = () => (
-  <div className={css({ textAlign: 'center' })}>
-    ©{new Date().getFullYear()} Antoni Matras
-  </div>
-);
+const Copyright: StyledComponent<any, any, Theme> = styled('footer')`
+  text-align: center;
+  padding: 2rem 1rem;
+`;
+
+const now = new Date().getFullYear();
 
 const Footer: React.StatelessComponent = () => (
-  <PrimaryContainer>
-    <div className={css({ padding: '2rem 1rem' })}>
-      <Copyright />
-    </div>
-  </PrimaryContainer>
+  <BlockPrimary>
+    <Container>
+      <Copyright>©{now} Antoni Matras</Copyright>
+    </Container>
+  </BlockPrimary>
 );
 
 export default Footer;

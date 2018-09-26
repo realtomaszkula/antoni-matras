@@ -14,7 +14,25 @@ import Tile, {
   TilePrimary,
   TilePrimaryTitle,
 } from '../components/tile';
-import Antek from '../images/antoni.jpg';
+import Antek from '../images/cover.png';
+
+const AboutMe: React.StatelessComponent = () => (
+  <PrimaryContainer>
+    <TilePrimary>
+      <TileCategory>O mnie</TileCategory>
+      <TileAccentTitle>
+        Nowa Twarz - Nowoczesny Kraków
+      </TileAccentTitle>
+      <TileBody>
+        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
+        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
+        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
+        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
+        pariatur laboris anim amet est magna nostrud do.
+      </TileBody>
+    </TilePrimary>
+  </PrimaryContainer>
+);
 
 const News: React.StatelessComponent = () => (
   <Container>
@@ -49,25 +67,6 @@ const Vision: React.StatelessComponent = () => (
     </TileAccent>
   </AccentContainer>
 );
-
-const AboutMe: React.StatelessComponent = () => (
-  <PrimaryContainer>
-    <TilePrimary>
-      <TileCategory>O mnie</TileCategory>
-      <TileAccentTitle>
-        Kraków to dla mnie bardzo osobista sprawa.{' '}
-      </TileAccentTitle>
-      <TileBody>
-        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
-        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
-        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
-        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
-        pariatur laboris anim amet est magna nostrud do.
-      </TileBody>
-    </TilePrimary>
-  </PrimaryContainer>
-);
-
 const MainImage: React.StatelessComponent<{
   src: string;
   alt: string;
