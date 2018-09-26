@@ -1,92 +1,112 @@
 import { css } from 'emotion';
 import * as React from 'react';
-import BannerImage from '../components/banner-image';
-import { PrimaryContainer } from '../components/container';
+import Container, { PrimaryDarkContainer } from '../components/container';
 import Layout from '../components/layout';
-import { Tile, TileAccentTitle } from '../components/tile';
-import Wawel from '../images/wawel.jpg';
+import LagniewiczaImage from '../images/lagniewicza.png';
+import PradnickaImage from '../images/pradnicka-narutowicza.png';
+import SosnowieckaImage from '../images/sosnowiecka.png';
+import {
+  default as StaregoDebuImage,
+  default as WitkowiceImage,
+} from '../images/starego-debu.png';
+import StawowaImage from '../images/stawowa.png';
+import styled, { StyledComponent } from 'react-emotion';
 
-const GridTileCount: React.StatelessComponent = ({ children }) => (
-  <div
-    className={css({
-      color: 'var(--primary)',
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-      marginRight: 16,
-      fontSize: '2rem',
-    })}
-  >
-    {children}
-  </div>
-);
+const Bullet: React.StatelessComponent<{ src: any; index: number }> = ({
+  children,
+  src,
+  index,
+}) => {
+  const isEven = index % 2 === 0;
 
-const GridTileContent: React.StatelessComponent = ({ children }) => (
-  <div
-    className={css({
-      flex: 1,
-      display: 'flex',
-      justifyContent: 'center',
-      alignItems: 'center',
-    })}
-  >
-    {children}
-  </div>
-);
+  return (
+    <div
+      className={css`
+        display: grid;
+        grid-template-columns: repeat(6, 1fr);
+        grid-template-rows: repeat(12, 50px);
 
-const GridTile: React.StatelessComponent = ({ children }) => (
-  <div
-    className={css({
-      borderTop: '5px solid var(--accent)',
-      backgroundColor: 'white',
-      color: 'black',
-      padding: '1rem',
-      display: 'flex',
-    })}
-  >
-    {children}
-  </div>
-);
-
-const Grid: React.StatelessComponent = ({ children }) => (
-  <div
-    className={css({
-      display: 'grid',
-      gridTemplateColumns: 'repeat(auto-fill, minmax(276px, 1fr))',
-      gridGap: 32,
-    })}
-  >
-    {children}
-  </div>
-);
+        @media (min-width: 640px) {
+          & + & {
+            margin-top: 3rem;
+          }
+        }
+      `}
+    >
+      <img
+        src={src}
+        className={css`
+          grid-column: 1 / -1;
+          grid-row: 1 / -1;
+          height: 100%;
+          width: 100%;
+          object-fit: cover;
+        `}
+      />
+      <p
+        className={css`
+          opacity: 0.92;
+          font-size: 1.4rem;
+          margin: 0;
+          padding: 1rem;
+          color: white;
+          grid-column: 1 / -1;
+          grid-row: span 3 /-1;
+          background-color: var(--accent);
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          @media (min-width: 640px) {
+            grid-column: ${isEven ? '1 / -3' : '3 / -1'};
+          }
+        `}
+      >
+        <span
+          className={css`
+            opacity: 1;
+          `}
+        >
+          {children}
+        </span>
+      </p>
+    </div>
+  );
+};
 
 class Program extends React.Component {
   render() {
     const bullets = [
-      'Sit consequat proident anim quis ipsum excepteur.',
-      'Nisi in incididunt sit ullamco mollit eiusmod ex ea labore proident laborum eu eu.',
-      'Amet non non incididunt consectetur commodo reprehenderit culpa anim Lorem.',
-      'Commodo cupidatat dolor cillum fugiat nulla cillum.',
-      'Id ut adipisicing laboris excepteur.',
-      'Officia esse sint deserunt nostrud do elit et cupidatat amet.',
+      {
+        src: PradnickaImage,
+        children: `Budowa chodnika z Żabińca wzdłuż szpitala im.G.Narutowicza do
+    ul.Prądnickiej.`,
+      },
+      {
+        src: LagniewiczaImage,
+        children: `Budowa kładki pieszej nad torami kolejowymi prowadzącej do ul.Langiewicza.`,
+      },
+      { src: StawowaImage, children: `Budowa chodnika wzdłuż ul. Stawowej.` },
+      {
+        src: SosnowieckaImage,
+        children: `Budowa chodnika wzdłuż ul. Sosnowieckiej.`,
+      },
+      {
+        src: StaregoDebuImage,
+        children: `Uruchomienie komunikacji miejskiej ul. Starego Dębu.`,
+      },
+      {
+        src: WitkowiceImage,
+        children: `Rewitalizacja terenu byłego szpitala okulistycznego w Witkowicach`,
+      },
     ];
 
     return (
       <Layout>
-        <BannerImage src={Wawel} alt="Zamek na Wawelu w Krakowie" />
-        <PrimaryContainer>
-          <Tile>
-            <TileAccentTitle>Program</TileAccentTitle>
-            <Grid>
-              {bullets.map((content, i) => (
-                <GridTile key={i}>
-                  <GridTileCount>{i + 1}</GridTileCount>
-                  <GridTileContent>{content}</GridTileContent>
-                </GridTile>
-              ))}
-            </Grid>
-          </Tile>
-        </PrimaryContainer>
+        <PrimaryDarkContainer>
+          {bullets.map(({ src, children }, index) => (
+            <Bullet key={index} src={src} index={index} children={children} />
+          ))}
+        </PrimaryDarkContainer>
       </Layout>
     );
   }
