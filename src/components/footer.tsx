@@ -1,6 +1,6 @@
 import { css } from 'emotion';
 import * as React from 'react';
-import Container from './container';
+import Container, { PrimaryContainer } from './container';
 
 const Copyright = () => (
   <div className={css({ textAlign: 'center' })}>
@@ -9,11 +9,11 @@ const Copyright = () => (
 );
 
 const Footer: React.StatelessComponent = () => (
-  <Container>
+  <PrimaryContainer>
     <div className={css({ padding: '2rem 1rem' })}>
       <Copyright />
     </div>
-  </Container>
+  </PrimaryContainer>
 );
 
 export default Footer;
