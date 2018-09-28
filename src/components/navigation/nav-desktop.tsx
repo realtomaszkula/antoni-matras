@@ -2,7 +2,7 @@ import { GatsbyLinkProps, Link } from 'gatsby';
 import * as React from 'react';
 import styled, { StyledComponent } from 'react-emotion';
 import { Theme } from '../../utils/theme';
-import { NavLink } from './public_api';
+import { NavLink } from './interfaces';
 
 const StyledDesktopNavLink: StyledComponent<
   GatsbyLinkProps<any>,
@@ -15,7 +15,7 @@ const StyledDesktopNavLink: StyledComponent<
   color: white;
   text-transform: uppercase;
   text-decoration: none;
-  padding: 8;
+  margin: 8px;
   transition: all 400ms;
   :hover {
     background-color: ${props => props.theme.colors.accent};

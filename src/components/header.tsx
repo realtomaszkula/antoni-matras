@@ -1,13 +1,13 @@
-import { Link, GatsbyLinkProps } from 'gatsby';
+import { Link } from 'gatsby';
 import * as React from 'react';
-import styled, { css, StyledComponent } from 'react-emotion';
-import { FaBars, FaTimes } from 'react-icons/fa';
-import Container from './container';
+import styled, { StyledComponent } from 'react-emotion';
 import { Theme } from '../utils/theme';
+import Container from './container';
 import Navigation from './navigation';
 
-const ContainerOuter: StyledComponent<any, any, Theme> = styled('div')`
+const StyledHeader: StyledComponent<any, any, Theme> = styled('header')`
   position: fixed;
+  z-index: 1000;
   top: 0;
   left: 0;
   right: 0;
@@ -16,12 +16,13 @@ const ContainerOuter: StyledComponent<any, any, Theme> = styled('div')`
   height: ${props => props.theme.layout.headerHeight};
 `;
 
-const ContainerInner: StyledComponent<any, any, Theme> = styled(Container)`
+const StyledContainer: StyledComponent<any, any, Theme> = styled(Container)`
+  position: relative;
   height: 100%;
-  display: 'flex';
+  display: flex;
   justify-content: space-between;
   align-items: flex-start;
-  padding: '0 1rem';
+  padding: 0 1rem;
 `;
 
 const Title: StyledComponent<any, any, Theme> = styled('h1')`
@@ -31,36 +32,24 @@ const Title: StyledComponent<any, any, Theme> = styled('h1')`
   text-decoration: none;
   display: flex;
   align-items: center;
-  height: '100%';
+  height: 100%;
   justify-content: center;
   text-transform: uppercase;
 `;
 
-class Header extends React.Component<any, { isOpen: boolean }> {
-  state = {
-    isOpen: false,
-  };
-
-  toggle = () => {
-    this.setState(prevState => ({
-      isOpen: !prevState.isOpen,
-    }));
-  };
-
+class Header extends React.Component {
   render() {
     return (
-      <div className={css({ zIndex: 1000, position: 'relative' })}>
-        <ContainerOuter>
-          <ContainerInner>
-            <Title>
-              <Link to="/">Antoni Matras</Link>
-            </Title>
-            <Hamburger isOpen={this.state.isOpen} isOpenChange={this.toggle} />
-            <Navigation isOpen={this.state.isOpen} />
-          </ContainerInner>
-        </ContainerOuter>
-      </div>
+      <StyledHeader>
+        <StyledContainer>
+          <Title>
+            <Link to="/">Antoni Matras</Link>
+          </Title>
+          <Navigation />
+        </StyledContainer>
+      </StyledHeader>
     );
   }
 }
+
 export default Header;

@@ -1,13 +1,9 @@
 import * as React from 'react';
 import styled, { StyledComponent } from 'react-emotion';
 import { Theme } from '../../utils/theme';
-import {
-  default as NavDesktop,
-  default as NavMobile,
-  DesktopNavProps,
-} from './nav-desktop';
-import { MobileNavProps } from './nav-mobile';
 import { NavLink } from './interfaces';
+import NavDesktop, { DesktopNavProps } from './nav-desktop';
+import NavMobile, { MobileNavProps } from './nav-mobile';
 
 const StyledNavDesktop: StyledComponent<DesktopNavProps, any, Theme> = styled(
   NavDesktop
@@ -34,12 +30,10 @@ const links: NavLink[] = [
   { to: 'kontakt', label: 'Kontakt' },
 ];
 
-const Navigation: React.StatelessComponent<{ isOpen: boolean }> = ({
-  isOpen,
-}) => (
+const Navigation: React.StatelessComponent = () => (
   <>
     <StyledNavDesktop links={links} />
-    <StyledNavMobile links={links} isOpen={isOpen} />
+    <StyledNavMobile links={links} />
   </>
 );
 
