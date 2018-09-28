@@ -5,6 +5,8 @@ export interface Colors {
   accentDark: string;
   accent: string;
   accentLight: string;
+  white: string;
+  black: string;
 }
 
 export interface Layout {
@@ -18,12 +20,13 @@ export interface Theme {
 export const theme: Theme = {
   layout: { headerHeight: '84px' },
   colors: {
-    primaryLight: '#ec407a',
-    primary: '#ec407a',
-    primaryDark: '#ec407a',
+    primaryLight: '#273755',
+    primary: '#273755',
+    primaryDark: '#273755',
     accentLight: '#ec407a',
     accent: '#ec407a',
     accentDark: '#ec407a',
+    white: 'white',
+    black: 'black',
   },
 };
-

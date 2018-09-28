@@ -1,13 +1,17 @@
-import { css } from 'emotion';
+import { ThemeProvider } from 'emotion-theming';
 import { graphql, StaticQuery } from 'gatsby';
 import * as React from 'react';
+import styled, { StyledComponent } from 'react-emotion';
 import Helmet from 'react-helmet';
+import { theme, Theme } from '../utils/theme';
 import Footer from './footer';
 import Header from './header';
 import './layout.css';
 
-import { ThemeProvider } from 'emotion-theming';
-import { theme } from '../utils/theme';
+const Content: StyledComponent<any, any, Theme> = styled('main')`
+  padding-top: ${props => props.theme.layout.headerHeight};
+  min-height: 100vh;
+`;
 
 const Layout: React.StatelessComponent = ({ children }) => (
   <StaticQuery
@@ -34,24 +38,8 @@ const Layout: React.StatelessComponent = ({ children }) => (
         <ThemeProvider theme={theme}>
           <>
             <Header />
-            <main
-              className={css({
-                margin: '0 auto',
-                display: 'flex',
-                flexDirection: 'column',
-                paddingTop: 'var(--header-height)',
-                minHeight: '100vh',
-              })}
-            >
-              <div
-                className={css({
-                  flex: 1,
-                })}
-              >
-                {children}
-              </div>
-              <Footer />
-            </main>
+            <Content>{children}</Content>
+            <Footer />
           </>
         </ThemeProvider>
       </>
