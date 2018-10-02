@@ -1,89 +1,127 @@
 import { css } from 'emotion';
 import * as React from 'react';
-import BannerImage from '../components/banner-image';
-import Container, {
-  AccentContainer,
-  PrimaryContainer,
-} from '../components/container';
+import styled, { StyledComponent } from 'react-emotion';
+import { BlockAccent, BlockPrimary } from '../components/block';
+import Container from '../components/container';
 import Layout from '../components/layout';
-import Tile, {
-  TileAccent,
-  TileAccentTitle,
-  TilePrimary,
-  TilePrimaryTitle,
-  TileTitle,
-} from '../components/tile';
 import Antek from '../images/antek-mami.jpg';
+import CollegiumNovum from '../images/collegium-novum.jpg';
+import { Theme } from '../utils/theme';
 
-const Banner: React.StatelessComponent = () => {
-  return (
-    <Container>
-      <div
-        className={css`
-          padding-top: 4rem;
-          display: flex;
-        `}
-      >
-        <img
-          src={Antek}
-          className={css`
-            display: block;
-            height: 400px;
-            width: auto;
-          `}
-        />
-        <div
-          className={css`
-            color: white;
-            padding: 1rem 5rem;
-          `}
-        >
-          <h1>Antoni Matras</h1>
-          <h3>
-            Absolwent wydziału prawa i administracji Uniwersytetu
-            Jagiellońskiego.
-          </h3>
-        </div>
-      </div>
-    </Container>
-  );
-};
+const Banner: React.StatelessComponent = () => (
+  <BlockPrimary
+    className={css`
+      position: relative;
+      height: 300px;
+      padding: 0;
+      margin: 1rem 0;
+    `}
+  >
+    <img
+      src={CollegiumNovum}
+      className={css`
+        opacity: 0.4;
+        object-fit: cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+      `}
+    />
+  </BlockPrimary>
+);
 
-const Bullet: React.StatelessComponent = () => {
-  return <div>Bullet</div>;
-};
+const Title: React.StatelessComponent = () => (
+  <BlockAccent
+    className={css`
+      margin-bottom: 1rem;
+      @media (min-width: 786px) {
+        margin-bottom: 0;
+      }
+    `}
+  >
+    <h1
+      className={css`
+        text-align: center;
+        margin: 0;
+      `}
+    >
+      Antoni Matras
+    </h1>
+  </BlockAccent>
+);
 
-const Bullets: React.StatelessComponent = () => {
-  return <div>Bullets</div>;
-};
+const experience = [
+  'Wieloletnie doświadczenie zawodowe zarówno korporacyjne oraz w organie administracji państwowej pozwala mi na skuteczną pomoc  drugiemu człowiekowi.',
+  'Jestem zaangażowany również  w działalność społeczno - wolontaryjną .',
+  'W swojej działalności kieruje się zawsze zasadami etyki zawodowej dbając o zachowanie wysokich standardów w każdym aspekcie wykonywania zadań.',
+  'Poprzez dotychczasowe zaangażowanie zawodowo-społeczne jestem otwarty na potrzeby każdego mieszkańca Krakowa',
+];
+
+const Experience: React.StatelessComponent = () => (
+  <ul>
+    {experience.map((text, i) => (
+      <li key={i}>{text}</li>
+    ))}
+  </ul>
+);
+
+const ProfilePic: React.StatelessComponent = () => (
+  <img
+    src={Antek}
+    className={css`
+      max-width: 354px;
+      display: block;
+      margin: 0 auto;
+      @media (min-width: 768px) {
+        position: absolute;
+        width: 100%;
+        top: -78px;
+      }
+    `}
+  />
+);
+
+const Grid: StyledComponent<any, any, Theme> = styled('div')`
+  @media (min-width: 768px) {
+    padding: 0 2rem;
+    display: grid;
+    grid-gap: 24px;
+    grid-template-columns: 1fr 248px;
+    grid-template-areas:
+      'title image'
+      'experience image'
+      'experience image';
+  }
+`;
+const GridItem: StyledComponent<
+  { area: 'experience' | 'image' | 'title' },
+  any,
+  Theme
+> = styled('div')`
+  @media (min-width: 768px) {
+    position: relative;
+    grid-area: ${props => props.area};
+  }
+`;
 
 class AboutMe extends React.Component {
   render() {
-    const bullets = [
-      'Wieloletnie doświadczenie zawodowe zarówno korporacyjne oraz w organie administracji państwowej pozwala mi na skuteczną pomoc  drugiemu człowiekowi.',
-      'Jestem zaangażowany również  w działalność społeczno - wolontaryjną .',
-      'W swojej działalności kieruje się zawsze zasadami etyki zawodowej dbając o zachowanie wysokich standardów w każdym aspekcie wykonywania zadań.',
-      'Poprzez dotychczasowe zaangażowanie zawodowo-społeczne jestem otwarty na potrzeby każdego mieszkańca Krakowa',
-    ];
-
     return (
       <Layout>
-        <div
-          className={css`
-            background: linear-gradient(
-              var(--primary-dark) 25%,
-              var(--white) 25%
-            );
-            min-height: 100vh;
-          `}
-        >
+        <Container>
           <Banner />
-          <Bullets>
-            {bullets.map((bullet, i) => (
-              <Bullet key={i}/>
-            ))}
-          </Bullets>
-        </div>
+          <Grid>
+            <GridItem area="title">
+              <Title />
+            </GridItem>
+            <GridItem area="experience">
+              <Experience />
+            </GridItem>
+            <GridItem area="image">
+              <ProfilePic />
+            </GridItem>
+          </Grid>
+        </Container>
       </Layout>
     );
   }
