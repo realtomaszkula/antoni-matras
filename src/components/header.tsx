@@ -35,6 +35,10 @@ const Title: StyledComponent<any, any, Theme> = styled('h1')`
   height: 100%;
   justify-content: center;
   text-transform: uppercase;
+  font-size: 1.4rem;
+  @media (min-width: 768px) {
+    font-size: 2rem;
+  }
 `;
 
 class Header extends React.Component {

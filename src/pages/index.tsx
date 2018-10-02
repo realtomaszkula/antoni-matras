@@ -1,101 +1,55 @@
-import { css } from 'emotion';
 import * as React from 'react';
-import Container, {
-  AccentContainer,
-  PrimaryContainer,
-  PrimaryDarkContainer,
-} from '../components/container';
+import { BlockAccent, BlockPrimary } from '../components/block';
 import Layout from '../components/layout';
-import Tile, {
-  TileAccent,
-  TileAccentTitle,
-  TileBody,
-  TileCategory,
-  TilePrimary,
-  TilePrimaryTitle,
-} from '../components/tile';
-import Antek from '../images/cover.png';
+import { TitleAccent, TitlePrimary } from '../components/title';
+import Container from '../components/container';
 
-const AboutMe: React.StatelessComponent = () => (
-  <PrimaryContainer>
-    <TilePrimary>
-      <TileCategory>O mnie</TileCategory>
-      <TileAccentTitle>
-        Nowa Twarz - Nowoczesny Kraków
-      </TileAccentTitle>
-      <TileBody>
-        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
-        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
-        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
-        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
-        pariatur laboris anim amet est magna nostrud do.
-      </TileBody>
-    </TilePrimary>
-  </PrimaryContainer>
+const Tile: React.StatelessComponent<{
+  theme: 'accent' | 'primary';
+  children: { content: string; title: string; category: string };
+}> = ({ children, theme }) => {
+  const [Block, Title] =
+    theme === 'primary'
+      ? [BlockPrimary, TitleAccent]
+      : [BlockAccent, TitlePrimary];
+
+  return (
+    <Block>
+      <Container>
+        <h3>{children.category}</h3>
+        <Title>{children.title}</Title>
+        <p>{children.content}</p>
+      </Container>
+    </Block>
+  );
+};
+
+const OMnie: React.StatelessComponent = () => (
+  <Tile
+    theme="primary"
+    children={{
+      category: `O mnie`,
+      title: `Nowa Twarz nowoczesny Kraków`,
+      content: `Zdobyte zawodowe doświadczenie mam zamiar wykorzystać dla rozwoju naszego miasta`,
+    }}
+  />
 );
 
-const News: React.StatelessComponent = () => (
-  <Container>
-    <Tile>
-      <TileCategory>Aktualnosci</TileCategory>
-      <TilePrimaryTitle>
-        Możliwe jest dużo więcej, niż przyzwyczajono nas myśleć
-      </TilePrimaryTitle>
-      <TileBody>
-        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
-        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
-        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
-        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
-        pariatur laboris anim amet est magna nostrud do.
-      </TileBody>
-    </Tile>
-  </Container>
-);
-
-const Vision: React.StatelessComponent = () => (
-  <AccentContainer>
-    <TileAccent>
-      <TileCategory>Program</TileCategory>
-      <TilePrimaryTitle>Chcialbym zeby Krakow byl miastem</TilePrimaryTitle>
-      <TileBody>
-        Labore sit ullamco tempor amet aute sit esse. Laboris velit quis sit eu
-        dolore id ut incididunt ea est reprehenderit. Voluptate cillum ea dolor
-        voluptate. Consectetur magna adipisicing ipsum nostrud do duis mollit
-        cupidatat est laboris Lorem aliqua. Occaecat nisi reprehenderit nulla
-        pariatur laboris anim amet est magna nostrud do.
-      </TileBody>
-    </TileAccent>
-  </AccentContainer>
-);
-const MainImage: React.StatelessComponent<{
-  src: string;
-  alt: string;
-  srcSet?: string;
-  sizes?: string;
-}> = ({ src, alt, srcSet, sizes }) => (
-  <img
-    alt={alt}
-    src={src}
-    srcSet={srcSet}
-    sizes={sizes}
-    className={css({
-      display: 'block',
-      margin: '0 auto',
-      maxWidth: '100%',
-      height: 'auto',
-      maxHeight: 600,
-    })}
+const Program: React.StatelessComponent = () => (
+  <Tile
+    theme="accent"
+    children={{
+      category: `Program`,
+      title: `Nowe podejście do aktualnych problemów`,
+      content: `Przedstawiam moje pomysły dla sprawnego funkcjonowania naszego miasta`,
+    }}
   />
 );
 
 const IndexPage = () => (
   <Layout>
-    <PrimaryDarkContainer>
-      <MainImage src={Antek} alt="Antoni Matras" />
-    </PrimaryDarkContainer>
-    <AboutMe />
-    <News />
-    <Vision />
+    <OMnie />
+    <Program />
   </Layout>
 );
 
