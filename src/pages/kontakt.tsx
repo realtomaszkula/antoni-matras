@@ -9,11 +9,14 @@ import {
   MediaBlockContent,
   MediaBlockIcon,
 } from '../components/media-block';
-import AntekImage from '../images/antek-mami.jpg';
+import { graphql } from 'gatsby';
+import Image from 'gatsby-image';
 
-const ContactMeBanner: React.StatelessComponent<{ className: string }> = ({
-  className,
-}) => (
+const BREAKPOINT = '640px';
+
+const ContactMeBanner: React.StatelessComponent<{
+  className: string;
+}> = ({ className, children }) => (
   <BlockPrimary className={className}>
     <Container>
       <MediaBlock responsive={true}>
@@ -38,19 +41,7 @@ const ContactMeBanner: React.StatelessComponent<{ className: string }> = ({
             <h3>KWW Jacka Majchrowskiego Obywatelski Kraków</h3>
           </BlockWhite>
         </MediaBlockContent>
-        <MediaBlockIcon>
-          <img
-            src={AntekImage}
-            className={css`
-              display: none;
-              @media (min-width: 768px) {
-                display: block;
-                height: 300px;
-                margin: 0 2rem;
-              }
-            `}
-          />
-        </MediaBlockIcon>
+        <MediaBlockIcon>{children}</MediaBlockIcon>
       </MediaBlock>
     </Container>
   </BlockPrimary>
@@ -95,17 +86,32 @@ const ContactOptions: React.StatelessComponent<{ className: string }> = ({
   );
 };
 
-class Contact extends React.Component {
+class Contact extends React.Component<{
+  data: { file: { childImageSharp: { fixed: any } } };
+}> {
   render() {
+    console.log(this.props);
     return (
       <Layout>
         <ContactMeBanner
           className={css`
-            @media (min-width: 640px) {
+            @media (min-width: ${BREAKPOINT}) {
               padding: 4rem 1rem;
             }
           `}
-        />
+        >
+          <Image
+            fixed={this.props.data.file.childImageSharp.fixed}
+            alt="Antoni Matras"
+            style={{ display: 'inherit' }}
+            className={css`
+              display: none;
+              @media (min-width: ${BREAKPOINT}) {
+                display: block;
+              }
+            `}
+          />
+        </ContactMeBanner>
         <ContactOptions
           className={css`
             padding: 4rem 1rem;
@@ -117,3 +123,15 @@ class Contact extends React.Component {
 }
 
 export default Contact;
+
+export const query = graphql`
+  query {
+    file(relativePath: { eq: "antek-mami.jpg" }) {
+      childImageSharp {
+        fixed(height: 400) {
+          ...GatsbyImageSharpFixed
+        }
+      }
+    }
+  }
+`;
